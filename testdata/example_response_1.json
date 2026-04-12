@@ -1,0 +1,14 @@
+[
+    {
+        "role_name": "access_auditor",
+        "justification": "Selected because the user reviews access permissions, regularly reviews logs, supports audits by validating access controls, and identifies discrepancies, while not granting, approving, or modifying access. This aligns with the role definition 'View access assignments and audit logs; compliance monitoring.' "
+    },
+    {
+        "role_name": "policy_reader",
+        "justification": "Selected because the user stated they review policies regularly but do not modify them. This matches the read-only policy role definition 'Read-only access to policies; cannot modify.' "
+    },
+    {
+        "role_name": "report_reader",
+        "justification": "Selected because the user primarily reviews existing reports rather than creating them, and uses reporting tools to review access and compliance data. This matches the role definition 'View reports on user access, group membership, and policy usage.' "
+    }
+]

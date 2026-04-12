@@ -1,0 +1,189 @@
+[
+    [
+        {
+            "id": "Q1",
+            "text": "Please describe the tasks you perform related to managing users, groups, or access to systems.",
+            "notes": "Look for mentions of creating users, assigning roles, or managing groups.",
+            "answer": "I manage the full lifecycle of users including creation, deletion, and role assignments. I also oversee group structures and ensure access is correctly aligned with organizational roles."
+        },
+        {
+            "id": "Q2",
+            "text": "Which systems, applications, or resources do you need to configure, monitor, or manage?",
+            "notes": "Helps determine scope (team vs org-wide).",
+            "answer": "I manage the central identity platform, internal applications, and access control systems across the entire organization."
+        },
+        {
+            "id": "Q3",
+            "text": "Which types of access or permissions are you responsible for granting, approving, or reviewing?",
+            "notes": "Highlights operational/admin roles like approver or policy contributor.",
+            "answer": "I grant and approve all types of access, including privileged roles, application access, and administrative permissions."
+        },
+        {
+            "id": "Q4",
+            "text": "How often do you modify access rights, create users, or review logs?",
+            "notes": "Frequency can indicate tier (daily = operational/admin, rare = contributor or read-only).",
+            "answer": "I perform these tasks daily as part of my role."
+        },
+        {
+            "id": "Q5",
+            "text": "Do you make decisions that affect security policies, compliance, or organizational access?",
+            "notes": "Signals higher-tier roles like platform_admin or policy_admin.",
+            "answer": "Yes, I define and enforce security policies and ensure compliance with organizational standards."
+        },
+        {
+            "id": "Q6",
+            "text": "How broad is your responsibility: team-level, department-level, or organization-wide?",
+            "notes": "Scope indicator for tier assignment.",
+            "answer": "My responsibilities are organization-wide."
+        },
+        {
+            "id": "Q7",
+            "text": "Do you create, update, or review access policies? If so, how frequently?",
+            "notes": "Helps distinguish between policy_contributor, policy_admin, or policy_reader.",
+            "answer": "I regularly create and update access policies as requirements change."
+        },
+        {
+            "id": "Q8",
+            "text": "Do you monitor or analyze user activity, security logs, or access reports?",
+            "notes": "Identifies security analyst, compliance_officer, or auditor roles.",
+            "answer": "Yes, I review logs and monitor activity to ensure compliance and detect anomalies."
+        },
+        {
+            "id": "Q9",
+            "text": "Do you generate reports on user access, group membership, or policy usage?",
+            "notes": "Maps to report_reader or report_contributor.",
+            "answer": "Yes, I generate and review reports regularly for auditing and governance purposes."
+        },
+        {
+            "id": "Q10",
+            "text": "Are there any tasks not mentioned above that involve managing access, permissions, or compliance in your role?",
+            "notes": "Catch-all for anything missed, useful for AI nuance.",
+            "answer": "I also manage role definitions and oversee other administrators' access levels."
+        }
+    ],
+    [
+        {
+            "id": "Q1",
+            "text": "Please describe the tasks you perform related to managing users, groups, or access to systems.",
+            "notes": "Look for mentions of creating users, assigning roles, or managing groups.",
+            "answer": "I assist with onboarding users, assigning them to appropriate groups, and updating access when roles change."
+        },
+        {
+            "id": "Q2",
+            "text": "Which systems, applications, or resources do you need to configure, monitor, or manage?",
+            "notes": "Helps determine scope (team vs org-wide).",
+            "answer": "I work mainly with internal applications used by my department and occasionally interact with the identity system."
+        },
+        {
+            "id": "Q3",
+            "text": "Which types of access or permissions are you responsible for granting, approving, or reviewing?",
+            "notes": "Highlights operational/admin roles like approver or policy contributor.",
+            "answer": "I approve access requests for standard applications and assign group memberships."
+        },
+        {
+            "id": "Q4",
+            "text": "How often do you modify access rights, create users, or review logs?",
+            "notes": "Frequency can indicate tier (daily = operational/admin, rare = contributor or read-only).",
+            "answer": "I perform these tasks a few times a week."
+        },
+        {
+            "id": "Q5",
+            "text": "Do you make decisions that affect security policies, compliance, or organizational access?",
+            "notes": "Signals higher-tier roles like platform_admin or policy_admin.",
+            "answer": "No, I follow existing policies rather than creating them."
+        },
+        {
+            "id": "Q6",
+            "text": "How broad is your responsibility: team-level, department-level, or organization-wide?",
+            "notes": "Scope indicator for tier assignment.",
+            "answer": "My responsibilities are mainly at the department level."
+        },
+        {
+            "id": "Q7",
+            "text": "Do you create, update, or review access policies? If so, how frequently?",
+            "notes": "Helps distinguish between policy_contributor, policy_admin, or policy_reader.",
+            "answer": "I occasionally update existing policies but do not create new ones."
+        },
+        {
+            "id": "Q8",
+            "text": "Do you monitor or analyze user activity, security logs, or access reports?",
+            "notes": "Identifies security analyst, compliance_officer, or auditor roles.",
+            "answer": "I sometimes review logs when investigating access issues."
+        },
+        {
+            "id": "Q9",
+            "text": "Do you generate reports on user access, group membership, or policy usage?",
+            "notes": "Maps to report_reader or report_contributor.",
+            "answer": "I create basic reports when needed for my manager."
+        },
+        {
+            "id": "Q10",
+            "text": "Are there any tasks not mentioned above that involve managing access, permissions, or compliance in your role?",
+            "notes": "Catch-all for anything missed, useful for AI nuance.",
+            "answer": "I help troubleshoot access issues and ensure users have the correct permissions for their roles."
+        }
+    ],
+    [
+        {
+            "id": "Q1",
+            "text": "Please describe the tasks you perform related to managing users, groups, or access to systems.",
+            "notes": "Look for mentions of creating users, assigning roles, or managing groups.",
+            "answer": "I do not manage users or groups directly but review access as part of audits."
+        },
+        {
+            "id": "Q2",
+            "text": "Which systems, applications, or resources do you need to configure, monitor, or manage?",
+            "notes": "Helps determine scope (team vs org-wide).",
+            "answer": "I access reporting and audit tools to review access and compliance data."
+        },
+        {
+            "id": "Q3",
+            "text": "Which types of access or permissions are you responsible for granting, approving, or reviewing?",
+            "notes": "Highlights operational/admin roles like approver or policy contributor.",
+            "answer": "I review access permissions but do not grant or approve them."
+        },
+        {
+            "id": "Q4",
+            "text": "How often do you modify access rights, create users, or review logs?",
+            "notes": "Frequency can indicate tier (daily = operational/admin, rare = contributor or read-only).",
+            "answer": "I regularly review logs but do not modify access."
+        },
+        {
+            "id": "Q5",
+            "text": "Do you make decisions that affect security policies, compliance, or organizational access?",
+            "notes": "Signals higher-tier roles like platform_admin or policy_admin.",
+            "answer": "I provide recommendations but do not make final decisions."
+        },
+        {
+            "id": "Q6",
+            "text": "How broad is your responsibility: team-level, department-level, or organization-wide?",
+            "notes": "Scope indicator for tier assignment.",
+            "answer": "My work spans across the organization for audit purposes."
+        },
+        {
+            "id": "Q7",
+            "text": "Do you create, update, or review access policies? If so, how frequently?",
+            "notes": "Helps distinguish between policy_contributor, policy_admin, or policy_reader.",
+            "answer": "I review policies regularly but do not modify them."
+        },
+        {
+            "id": "Q8",
+            "text": "Do you monitor or analyze user activity, security logs, or access reports?",
+            "notes": "Identifies security analyst, compliance_officer, or auditor roles.",
+            "answer": "Yes, I analyze logs and reports to identify potential compliance issues."
+        },
+        {
+            "id": "Q9",
+            "text": "Do you generate reports on user access, group membership, or policy usage?",
+            "notes": "Maps to report_reader or report_contributor.",
+            "answer": "I primarily review existing reports rather than creating them."
+        },
+        {
+            "id": "Q10",
+            "text": "Are there any tasks not mentioned above that involve managing access, permissions, or compliance in your role?",
+            "notes": "Catch-all for anything missed, useful for AI nuance.",
+            "answer": "I support audits by validating access controls and identifying discrepancies."
+        }
+    ]
+
+]
