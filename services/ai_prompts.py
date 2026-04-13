@@ -54,10 +54,10 @@ def get_role_assignments(questionData):
 
                     Return ONLY valid JSON in the following format: 
                     
-                    {{ 
+                    [{{ 
                     "role_name": "string", 
                     "justification" : "string" 
-                    }}
+                    }}]
                 """
             }
         ],
