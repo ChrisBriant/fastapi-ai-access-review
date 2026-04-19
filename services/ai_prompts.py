@@ -95,16 +95,98 @@ def get_role_assignments(questionData):
 
     return response_dict
 
+def get_interview_question_answer(question):
+    response = client.responses.create(
+            prompt={
+                "id" : os.environ.get("INTERVIEW_QUESTION_PROMPT_ID"),
+                "version": "2",
+                "variables": {
+                "question": f"{question}"
+                }
+            },
+            input=[
+                {
+                "role": "user",
+                "content": [
+                    {
+                    "type": "input_text",
+                    "text": "Please answer the question asked based on the rules in the developer message and the uploaded file."
+                    }
+                ]
+                }
+            ],
+            reasoning={
+                "summary": "auto"
+            },
+            tools=[
+                {
+                "type": "file_search",
+                "vector_store_ids": [
+                    os.environ.get("INTERVIEW_QUESTION_POLICY_VECTOR_STORE_ID")
+                ]
+                }
+            ],
+            store=True,
+            include=[
+                "reasoning.encrypted_content",
+                "web_search_call.action.sources"
+            ]
+    )
+
+    # ---- Extract text safely ----
+    try:
+        output = response.output
+
+        if not output or not isinstance(output, list):
+            raise ValueError("Invalid response: missing output")
+
+        # Find first text block
+        text_parts = []
+
+        for item in output:
+            content = getattr(item, "content", None)
+            if not content:
+                continue
+
+            for c in content:
+                text = getattr(c, "text", None)
+                if isinstance(text, str):
+                    text_parts.append(text)
+
+        if not text_parts:
+            raise ValueError("Invalid response: no text content found")
+
+        result = "\n".join(text_parts).strip()
+
+        # Final validation
+        if not isinstance(result, str):
+            raise TypeError("Model output is not a string")
+
+        if result == "":
+            raise ValueError("Model returned empty string")
+
+        return result
+
+    except Exception as e:
+        raise RuntimeError(f"Failed to parse AI response: {str(e)}")
+
+
 def main():
     #Testing
     #Load the question answer sets
-    file_path = PROJECT_ROOT / "testdata" / "question_answer_sets.json"
+    # file_path = PROJECT_ROOT / "testdata" / "question_answer_sets.json"
     
-    with file_path.open("r", encoding="utf-8") as f:
-        question_answer_sets = json.load(f)
-    role_assignment_response = get_role_assignments(question_answer_sets[0])
-    print("AI Role Selection Response", role_assignment_response)
+    # with file_path.open("r", encoding="utf-8") as f:
+    #     question_answer_sets = json.load(f)
+    # role_assignment_response = get_role_assignments(question_answer_sets[0])
+    #print("AI Role Selection Response", role_assignment_response)
 
+    #TEST INTERVIEW QUESTION
+    try:
+        response = get_interview_question_answer("What were you doing 14 years ago?")
+        print("The response is", response)
+    except Exception as e:
+        print("An error occurred getting the response to the interview question.", e)
 
 
 if __name__ == "__main__":

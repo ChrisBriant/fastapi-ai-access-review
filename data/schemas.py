@@ -17,3 +17,6 @@ class RoleResponseSchema(BaseModel):
 
 class AiResponseSchema(RootModel[List[RoleResponseSchema]]):
     pass
+
+class InputQuestionSchema(BaseModel):
+    question : str

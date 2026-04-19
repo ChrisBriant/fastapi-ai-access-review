@@ -1,10 +1,14 @@
-from fastapi import FastAPI, Depends, HTTPException
+from slowapi import Limiter
+from slowapi.util import get_remote_address
+from fastapi import FastAPI, Depends, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 import os
 import dotenv
 from services.auth import get_api_key
-from data.schemas import UserAnswerListSchema, AiResponseSchema
-from services.ai_prompts import get_role_assignments
+from data.schemas import UserAnswerListSchema, AiResponseSchema, InputQuestionSchema
+from services.ai_prompts import get_role_assignments, get_interview_question_answer
+from services.utils import extract_markdown
+import bleach
 
 
 
@@ -15,14 +19,18 @@ if os.path.isfile(dotenv_file):
 
 app = FastAPI()
 
+allowed_origins = ["http://localhost:5173", "http://127.0.0.1:5500"]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # React app origin
+    allow_origins=allowed_origins,  # React app origin
     allow_credentials=True,                   # must be True for cookies
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
+limiter = Limiter(key_func=get_remote_address)
+app.state.limiter = limiter
 
 @app.get("/test", response_model = str)
 async def test():
@@ -48,3 +56,35 @@ async def get_groups(user_answers : UserAnswerListSchema, api_key: str = Depends
         raise HTTPException(status_code=400,detail="Unable to generate role data")
 
     return role_list
+
+
+@app.post("/ask-interview-question", response_model = str)
+@limiter.limit("10/minute")
+async def ask_interview_question(question : InputQuestionSchema, request : Request):
+    #Check that the origin is valid
+    origin = request.headers.get("origin")
+    print("THIS ORIGINATES FROM", origin)
+    if not origin in allowed_origins:
+        raise HTTPException(status_code=403,detail="Unknown Origin")
+    
+    cleaned_question = bleach.clean(question.question, tags=[], attributes={}, strip=True)
+
+    print("QUESTION", cleaned_question)
+    try:
+        #ai_response = get_interview_question_answer(cleaned_question)
+        ai_response = """
+            In my experience, I ensure an environment is up-to-date and audit ready by combining controlled deployment, monitoring, access governance, and documentation.
+
+            I’ve used Terraform Infrastructure-as-Code to provision Azure environments consistently, and Azure DevOps CI/CD pipelines with approval-based workflows across development and production environments, which helps keep deployments controlled and repeatable . I also configure monitoring and alerting through Azure Log Analytics to support operational visibility and incident response .
+
+            From an access and audit perspective, I’ve managed identity provisioning and permission governance in Microsoft Entra ID, performed privilege reviews and access audits across enterprise platforms, and developed PowerShell automation to streamline access reviews and compliance reporting . I’ve also produced access control documentation and implementation guidance, which is important for demonstrating how access is managed and reviewed .
+
+            In addition, I’ve managed TLS certificate lifecycle activities, including issuing and renewing certificates, and I’ve previously conducted security audits and ensured compliance with IT policies  .
+
+        """
+        #print("THIS IS THE AI RESPONSE", ai_response)
+        #markdown_response = extract_markdown(ai_response)
+    except Exception as e:
+        print("An error occurred getting the response to the interview question.", e)
+        raise HTTPException(status_code=400,detail="An error occurred getting the response to the interview question.")
+    return ai_response
