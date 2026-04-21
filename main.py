@@ -63,25 +63,24 @@ async def get_groups(user_answers : UserAnswerListSchema, api_key: str = Depends
 async def ask_interview_question(question : InputQuestionSchema, request : Request):
     #Check that the origin is valid
     origin = request.headers.get("origin")
-    print("THIS ORIGINATES FROM", origin)
+
     if not origin in allowed_origins:
         raise HTTPException(status_code=403,detail="Unknown Origin")
     
     cleaned_question = bleach.clean(question.question, tags=[], attributes={}, strip=True)
 
-    print("QUESTION", cleaned_question)
     try:
-        #ai_response = get_interview_question_answer(cleaned_question)
-        ai_response = """
-            In my experience, I ensure an environment is up-to-date and audit ready by combining controlled deployment, monitoring, access governance, and documentation.
+        ai_response = get_interview_question_answer(cleaned_question)
+        # ai_response = """
+        #     In my experience, I ensure an environment is up-to-date and audit ready by combining controlled deployment, monitoring, access governance, and documentation.
 
-            I’ve used Terraform Infrastructure-as-Code to provision Azure environments consistently, and Azure DevOps CI/CD pipelines with approval-based workflows across development and production environments, which helps keep deployments controlled and repeatable . I also configure monitoring and alerting through Azure Log Analytics to support operational visibility and incident response .
+        #     I’ve used Terraform Infrastructure-as-Code to provision Azure environments consistently, and Azure DevOps CI/CD pipelines with approval-based workflows across development and production environments, which helps keep deployments controlled and repeatable . I also configure monitoring and alerting through Azure Log Analytics to support operational visibility and incident response .
 
-            From an access and audit perspective, I’ve managed identity provisioning and permission governance in Microsoft Entra ID, performed privilege reviews and access audits across enterprise platforms, and developed PowerShell automation to streamline access reviews and compliance reporting . I’ve also produced access control documentation and implementation guidance, which is important for demonstrating how access is managed and reviewed .
+        #     From an access and audit perspective, I’ve managed identity provisioning and permission governance in Microsoft Entra ID, performed privilege reviews and access audits across enterprise platforms, and developed PowerShell automation to streamline access reviews and compliance reporting . I’ve also produced access control documentation and implementation guidance, which is important for demonstrating how access is managed and reviewed .
 
-            In addition, I’ve managed TLS certificate lifecycle activities, including issuing and renewing certificates, and I’ve previously conducted security audits and ensured compliance with IT policies  .
+        #     In addition, I’ve managed TLS certificate lifecycle activities, including issuing and renewing certificates, and I’ve previously conducted security audits and ensured compliance with IT policies  .
 
-        """
+        # """
         #print("THIS IS THE AI RESPONSE", ai_response)
         #markdown_response = extract_markdown(ai_response)
     except Exception as e:
