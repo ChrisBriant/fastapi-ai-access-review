@@ -19,7 +19,7 @@ if os.path.isfile(dotenv_file):
 
 app = FastAPI()
 
-allowed_origins = ["http://localhost:5173", "http://127.0.0.1:5500"]
+allowed_origins = ["http://localhost:5173", "http://127.0.0.1:5500", "https://aiam-certification.chrisbriant.uk"]
 
 app.add_middleware(
     CORSMiddleware,
@@ -31,10 +31,6 @@ app.add_middleware(
 
 limiter = Limiter(key_func=get_remote_address)
 app.state.limiter = limiter
-
-@app.get("/test", response_model = str)
-async def test():
-    return "Hello - This is a test"
 
 
 @app.post("/get-groups", response_model = AiResponseSchema)

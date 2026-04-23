@@ -3,3 +3,4 @@
 .env_redirects
 backups/
 **/__pycache__/
+*.sock
