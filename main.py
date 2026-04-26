@@ -19,7 +19,7 @@ if os.path.isfile(dotenv_file):
 
 app = FastAPI()
 
-allowed_origins = ["http://localhost:5173", "http://127.0.0.1:5500", "https://aiam-certification.chrisbriant.uk"]
+allowed_origins = ["http://localhost:5173", "http://127.0.0.1:5500", "https://aiam-certification.chrisbriant.uk", "https://aiam.chrisbriant.uk",]
 
 app.add_middleware(
     CORSMiddleware,
